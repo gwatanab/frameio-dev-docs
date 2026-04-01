@@ -1,0 +1,243 @@
+/* ============================================================
+   Fern MDX Component Styles — portable single <style> block
+   Styles MDX components in *.mdx.html localization preview files.
+   Loaded after markdown-styles.css by apply_styles.py.
+   ============================================================ */
+
+/* ─── Base ────────────────────────────────────────────────── */
+.mdx-component             { display: block; }
+span.mdx-component         { display: inline; }
+
+/* ─── Callouts — named types ─────────────────────────────── */
+/* Shared structure */
+[data-mdx-component="Info"],
+[data-mdx-component="Warning"],
+[data-mdx-component="Note"],
+[data-mdx-component="Error"],
+[data-mdx-component="Tip"] {
+  margin: 1rem 0;
+  padding: 0.625rem 1rem;
+  border-left: 4px solid #d1d9e0;
+  border-radius: 6px;
+  background-color: #f6f8fa;
+}
+
+/* Shared ::before: icon + title or default label */
+[data-mdx-component="Info"]::before,
+[data-mdx-component="Warning"]::before,
+[data-mdx-component="Note"]::before,
+[data-mdx-component="Error"]::before,
+[data-mdx-component="Tip"]::before {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875em;
+  line-height: 1.4;
+  margin-bottom: 0.4rem;
+}
+
+/* Info — blue */
+[data-mdx-component="Info"]                      { border-left-color: #0969da; background-color: #ddf4ff; }
+[data-mdx-component="Info"][title]::before       { content: "ℹ  " attr(title);  color: #0969da; }
+[data-mdx-component="Info"]:not([title])::before { content: "ℹ  Info";          color: #0969da; }
+
+/* Warning — amber */
+[data-mdx-component="Warning"]                      { border-left-color: #9a6700; background-color: #fff8c5; }
+[data-mdx-component="Warning"][title]::before       { content: "⚠  " attr(title); color: #9a6700; }
+[data-mdx-component="Warning"]:not([title])::before { content: "⚠  Warning";       color: #9a6700; }
+
+/* Note — gray */
+[data-mdx-component="Note"]                      { border-left-color: #59636e; background-color: #f6f8fa; }
+[data-mdx-component="Note"][title]::before       { content: "✎  " attr(title); color: #59636e; }
+[data-mdx-component="Note"]:not([title])::before { content: "✎  Note";          color: #59636e; }
+
+/* Error — red */
+[data-mdx-component="Error"]                      { border-left-color: #cf222e; background-color: #ffebe9; }
+[data-mdx-component="Error"][title]::before       { content: "✕  " attr(title); color: #cf222e; }
+[data-mdx-component="Error"]:not([title])::before { content: "✕  Error";         color: #cf222e; }
+
+/* Tip — green */
+[data-mdx-component="Tip"]                      { border-left-color: #1a7f37; background-color: #dafbe1; }
+[data-mdx-component="Tip"][title]::before       { content: "★  " attr(title); color: #1a7f37; }
+[data-mdx-component="Tip"]:not([title])::before { content: "★  Tip";           color: #1a7f37; }
+
+/* ─── Callout — generic with intent ─────────────────────── */
+[data-mdx-component="Callout"] {
+  margin: 1rem 0;
+  padding: 0.625rem 1rem;
+  border-left: 4px solid #0969da;
+  border-radius: 6px;
+  background-color: #ddf4ff;
+}
+[data-mdx-component="Callout"][title]::before {
+  display: block;
+  content: attr(title);
+  font-weight: 600;
+  font-size: 0.875em;
+  margin-bottom: 0.4rem;
+  color: #1f2328;
+}
+/* intent overrides */
+[data-mdx-component="Callout"][data-mdx-component-attr-quoted-intent="warning"] { border-left-color: #9a6700; background-color: #fff8c5; }
+[data-mdx-component="Callout"][data-mdx-component-attr-quoted-intent="error"]   { border-left-color: #cf222e; background-color: #ffebe9; }
+[data-mdx-component="Callout"][data-mdx-component-attr-quoted-intent="success"],
+[data-mdx-component="Callout"][data-mdx-component-attr-quoted-intent="tip"],
+[data-mdx-component="Callout"][data-mdx-component-attr-quoted-intent="check"]   { border-left-color: #1a7f37; background-color: #dafbe1; }
+[data-mdx-component="Callout"][data-mdx-component-attr-quoted-intent="note"]    { border-left-color: #59636e; background-color: #f6f8fa; }
+[data-mdx-component="Callout"][data-mdx-component-attr-quoted-intent="launch"]  { border-left-color: #8250df; background-color: #fbefff; }
+
+/* ─── CardGroup ─────────────────────────────────────────── */
+[data-mdx-component="CardGroup"] {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+/* ─── Card ──────────────────────────────────────────────── */
+[data-mdx-component="Card"] {
+  padding: 1rem;
+  border: 1px solid #d1d9e0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  text-decoration: none;
+  color: inherit;
+}
+[data-mdx-component="Card"][href] { cursor: pointer; }
+[data-mdx-component="Card"][href]:hover { border-color: #0969da; }
+[data-mdx-component="Card"][title]::before {
+  content: attr(title);
+  display: block;
+  font-weight: 600;
+  font-size: 1em;
+  color: #1f2328;
+  margin-bottom: 0.4rem;
+}
+
+/* ─── AccordionGroup ────────────────────────────────────── */
+[data-mdx-component="AccordionGroup"] {
+  margin: 1rem 0;
+  border: 1px solid #d1d9e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ─── Accordion ─────────────────────────────────────────── */
+[data-mdx-component="Accordion"] {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #d1d9e0;
+}
+[data-mdx-component="Accordion"]:last-child { border-bottom: none; }
+[data-mdx-component="Accordion"][title]::before {
+  content: "▸  " attr(title);
+  display: block;
+  font-weight: 600;
+  font-size: 1em;
+  color: #1f2328;
+  margin-bottom: 0.4rem;
+}
+[data-mdx-component="Accordion"]:not([title])::before {
+  content: "▸  Section";
+  display: block;
+  font-weight: 600;
+  color: #1f2328;
+  margin-bottom: 0.4rem;
+}
+
+/* ─── Steps ─────────────────────────────────────────────── */
+[data-mdx-component="Steps"] {
+  margin: 1rem 0;
+  counter-reset: fern-step;
+}
+
+/* ─── Step ──────────────────────────────────────────────── */
+[data-mdx-component="Step"] {
+  counter-increment: fern-step;
+  border-left: 3px solid #0969da;
+  padding: 0.5rem 0.875rem;
+  margin: 0.75rem 0;
+}
+[data-mdx-component="Step"][title]::before {
+  content: counter(fern-step) ".  " attr(title);
+  display: block;
+  font-weight: 600;
+  font-size: 1em;
+  color: #0969da;
+  margin-bottom: 0.25rem;
+}
+[data-mdx-component="Step"]:not([title])::before {
+  content: counter(fern-step);
+  display: block;
+  font-weight: 700;
+  color: #0969da;
+  margin-bottom: 0.25rem;
+}
+
+/* ─── Frame ─────────────────────────────────────────────── */
+[data-mdx-component="Frame"] {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #d1d9e0;
+  border-radius: 8px;
+  background-color: #f6f8fa;
+  text-align: center;
+}
+
+/* ─── Frame caption ─────────────────────────────────────── */
+[data-mdx-block="caption"] {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.875em;
+  color: #59636e;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ─── Badge (inline) ────────────────────────────────────── */
+[data-mdx-component="Badge"] {
+  display: inline-block;
+  padding: 0.15em 0.55em;
+  border-radius: 9999px;
+  font-size: 0.75em;
+  font-weight: 600;
+  line-height: 1.5;
+  background-color: #818b981f;
+  color: #1f2328;
+  vertical-align: middle;
+}
+/* intent colors */
+[data-mdx-component="Badge"][data-mdx-component-attr-quoted-intent="info"]    { background-color: #ddf4ff; color: #0969da; }
+[data-mdx-component="Badge"][data-mdx-component-attr-quoted-intent="warning"] { background-color: #fff8c5; color: #9a6700; }
+[data-mdx-component="Badge"][data-mdx-component-attr-quoted-intent="error"],
+[data-mdx-component="Badge"][data-mdx-component-attr-quoted-intent="danger"]  { background-color: #ffebe9; color: #cf222e; }
+[data-mdx-component="Badge"][data-mdx-component-attr-quoted-intent="success"],
+[data-mdx-component="Badge"][data-mdx-component-attr-quoted-intent="tip"],
+[data-mdx-component="Badge"][data-mdx-component-attr-quoted-intent="check"]   { background-color: #dafbe1; color: #1a7f37; }
+[data-mdx-component="Badge"][data-mdx-component-attr-quoted-intent="note"]    { background-color: #f6f8fa; color: #59636e; }
+[data-mdx-component="Badge"][data-mdx-component-attr-quoted-intent="launch"]  { background-color: #fbefff; color: #8250df; }
+
+/* ─── CodeBlocks container ──────────────────────────────── */
+[data-mdx-component="CodeBlocks"] {
+  margin: 1rem 0;
+  border: 1px solid #d1d9e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+[data-mdx-component="CodeBlocks"] > pre {
+  margin: 0;
+  border-radius: 0;
+  border-top: 1px solid #d1d9e0;
+}
+[data-mdx-component="CodeBlocks"] > pre:first-child { border-top: none; }
+
+/* Code block title label (from title attribute on language span) */
+[data-mdx-component="CodeBlocks"] pre > span[title]::before {
+  content: attr(title);
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 0.75em;
+  color: #59636e;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #d1d9e0;
+  font-weight: 500;
+}
